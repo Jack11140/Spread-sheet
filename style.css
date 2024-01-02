@@ -1,0 +1,35 @@
+th {
+    background-color: #dedede
+}
+
+
+#spreadsheet td.highlight1 {
+    border-color: blue; /* 하이라이트 클래스를 가진 셀의 테두리 색상을 빨간색으로 지정 */
+}
+    
+#spreadsheet th.highlight1 {
+    border-color: red; /* 하이라이트 클래스를 가진 헤더 셀의 테두리 색상을 빨간색으로 지정 */
+}
+    
+.highlight {
+    background-color: #add8e6;
+    color: white;
+}
+
+#spreadsheet input[type="text"] {
+    border: transparent;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#spreadsheet {
+    border-collapse: separate;
+    border: 2px solid gray;
+    width: 100%;
+}
+
+#spreadsheet th, #spreadsheet td {
+    border: 1px solid gray;
+    padding: 8px;
+}
