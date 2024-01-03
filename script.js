@@ -88,3 +88,87 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var table = document.getElementById("spreadsheet");
+
+    // 저장된 데이터 불러오기
+    loadFromLocalStorage();
+
+    table.addEventListener("focusout", function (event) {
+        var target = event.target;
+
+        if (target.tagName === "INPUT" && target.parentNode.tagName === "TD") {
+            // 저장
+            saveToLocalStorage();
+        }
+    });
+
+    function saveToLocalStorage() {
+        var cells = document.querySelectorAll("#spreadsheet td input");
+        var data = [];
+
+        cells.forEach(function (cell) {
+            data.push(cell.value);
+        });
+
+        localStorage.setItem("spreadsheetData", JSON.stringify(data));
+    }
+
+    function loadFromLocalStorage() {
+        var storedData = localStorage.getItem("spreadsheetData");
+        if (storedData) {
+            var data = JSON.parse(storedData);
+            var cells = document.querySelectorAll("#spreadsheet td input");
+
+            cells.forEach(function (cell, index) {
+                cell.value = data[index] || "";
+            });
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    var table = document.getElementById("spreadsheet");
+
+    // 페이지 로딩 시 저장된 데이터 불러오기
+    display();
+
+    table.addEventListener("focusout", function (event) {
+        var target = event.target;
+
+        if (target.tagName === "INPUT" && target.parentNode.tagName === "TD") {
+            // 포커스를 잃으면 데이터 저장
+            saveToLocalStorage();
+        }
+    });
+
+    function saveToLocalStorage() {
+        var cells = document.querySelectorAll("#spreadsheet td input");
+        var data = [];
+
+        cells.forEach(function (cell) {
+            data.push(cell.value);
+        });
+
+        localStorage.setItem("spreadsheetData", JSON.stringify(data));
+    }
+
+    function loadFromLocalStorage() {
+        var storedData = localStorage.getItem("spreadsheetData");
+        if (storedData) {
+            var data = JSON.parse(storedData);
+            var cells = document.querySelectorAll("#spreadsheet td input");
+
+            cells.forEach(function (cell, index) {
+                cell.value = data[index] || "";
+            });
+        }
+    }
+
+    function display() {
+        // 페이지 로딩 시 저장된 데이터 불러오기
+        loadFromLocalStorage();
+    }
+});
